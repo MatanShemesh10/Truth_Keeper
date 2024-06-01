@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Truth Keeper Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #4d97b2, #39a9a9, #81d8d0); /* Updated gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 700px;
+            width: 90%; /* Adjust width for responsiveness */
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        textarea {
+            width: 75%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto 20px auto; /* Center input fields */
+        }
+        button {
+            display: block;
+            width: 50%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 auto; /* Center the button */
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .custom-alert {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+        }
+        .custom-alert-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 10px; /* Rounded corners */
+            text-align: center;
+        }
+        .close-alert {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .close-alert:hover {
+            background-color: #0056b3;
+        }
+        .link {
+            margin-top: 20px;
+            display: block;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        img {
+            width: 80%;
+        }
+        .options {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .options label {
+            display: inline;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="main_logo.png" id="main_logo">
+        <h1>Options</h1>
+        
+        <!-- Radio Buttons -->
+        <div class="options">
+            <label>Choose an option:</label><br>
+            <label><input type="radio" name="option" value="option1"> Option 1</label>
+            <label><input type="radio" name="option" value="option2"> Option 2</label>
+        </div>
+        
+        <!-- Checkboxes -->
+        <div class="options">
+            <label>Enable Features:</label><br>
+            <label><input type="checkbox" id="feature1"> Feature 1</label>
+            <label><input type="checkbox" id="feature2"> Feature 2</label>
+        </div>
+        
+        <!-- Select Options -->
+        <div class="options">
+            <label for="select-setting">Select Setting:</label>
+            <select id="select-setting">
+                <option value="setting1">Setting 1</option>
+                <option value="setting2">Setting 2</option>
+                <option value="setting3">Setting 3</option>
+            </select>
+        </div>
+        
+        <!-- Save Button -->
+        <button id="save-button">Save</button>
+        
+        <h4>Do you want to build a snowman?</h4>
+        <img src="master_splinter.enc" style="width: 20%; border-radius: 20%;" id="main_logo">
+
+        <!-- Link to Website -->
+        <a href="https://yourwebsite.com" class="link">Visit our website</a>
+    </div>
+
+    <!-- Custom alert modal -->
+    <div id="custom-alert" class="custom-alert">
+        <div class="custom-alert-content">
+            <p>Settings saved!</p>
+            <button id="close-alert" class="close-alert">OK</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('save-button').addEventListener('click', function() {
+            const exampleSetting = document.getElementById('example-setting').value;
+            const selectedOption = document.querySelector('input[name="option"]:checked').value;
+            const feature1 = document.getElementById('feature1').checked;
+            const feature2 = document.getElementById('feature2').checked;
+            const selectSetting = document.getElementById('select-setting').value;
+
+            // Save the settings to Chrome storage
+            chrome.storage.sync.set({ 
+                exampleSetting: exampleSetting,
+                selectedOption: selectedOption,
+                feature1: feature1,
+                feature2: feature2,
+                selectSetting: selectSetting
+            }, function() {
+                // Show custom alert
+                document.getElementById('custom-alert').style.display = 'block';
+            });
+        });
+
+        // Event listener for closing the custom alert
+        document.getElementById('close-alert').addEventListener('click', function() {
+            document.getElementById('custom-alert').style.display = 'none';
+        });
+
+        // Load the settings from Chrome storage
+        chrome.storage.sync.get(['exampleSetting', 'selectedOption', 'feature1', 'feature2', 'selectSetting'], function(data) {
+            if (data.exampleSetting) {
+                document.getElementById('example-setting').value = data.exampleSetting;
+            }
+            if (data.selectedOption) {
+                document.querySelector(`input[name="option"][value="${data.selectedOption}"]`).checked = true;
+            }
+            if (data.feature1 !== undefined) {
+                document.getElementById('feature1').checked = data.feature1;
+            }
+            if (data.feature2 !== undefined) {
+                document.getElementById('feature2').checked = data.feature2;
+            }
+            if (data.selectSetting) {
+                document.getElementById('select-setting').value = data.selectSetting;
+            }
+        });
+    </script>
+</body>
+</html>

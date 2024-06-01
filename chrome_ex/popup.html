@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Truth Keeper</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="popup.js"></script>
+</head>
+<body>
+    <div class="popup-container">
+        <div class="header">
+            <img src="main_logo.png" alt="Truth Keeper" class="main_logo">
+            <img src="settings.png" alt="Settings" class="settings-icon">
+        </div>
+        <p class="instruction">Enter some text for reliability verification:</p>
+        <div id="chat-window">
+            <div id="output"></div>
+        </div>
+        <div class="input-container">
+            <input type="text" class="input-text" id="user-input" placeholder="Message Truth Keeper..." autocomplete="off"/>
+        </div>
+        <button class="send-button">Send</button>
+
+        <div class="loading" id="loading" style="display: none;">Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>
+    </div>
+
+    <!-- Custom alert modal -->
+    <div id="custom-alert" class="custom-alert">
+        <div class="custom-alert-content">
+            <p id="custom-alert-message"></p>
+            <button id="close-alert" class="close-alert">OK</button>
+        </div>
+    </div>
+</body>
+</html>
