@@ -18,31 +18,7 @@
         flex-direction: column;
     }
 
-    #rotating-circle {
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        border-radius: 50%;
-        background-color: red;
-        animation: rotateAndScale 5s linear infinite, colorChange 5s linear infinite;
-        z-index: -1; /* Ensure it's behind the chat container */
-    }
-
-    @keyframes rotateAndScale {
-        0%, 100% {
-            transform: rotate(0deg) scale(1);
-        }
-        50% {
-            transform: rotate(360deg) scale(1.5);
-        }
-    }
-    @keyframes colorChange {
-        0% { background-color: red; }
-        25% { background-color: blue; }
-        50% { background-color: green; }
-        75% { background-color: yellow; }
-        100% { background-color: red; }
-    }
+    
 
     #chat-container {
         width: 100%;

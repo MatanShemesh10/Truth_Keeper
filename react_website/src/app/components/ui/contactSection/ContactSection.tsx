@@ -20,7 +20,7 @@ export const ContactSection: React.FC<ContactSectionComponentProps> = () => {
 
             <div className="col-lg-5 col-12 mb-4 mb-lg-0">
               <iframe className="google-map" 
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.065641062665!2d-122.4230416990949!3d37.80335401520422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858127459fabad%3A0x808ba520e5e9edb7!2sFrancisco%20Park!5e1!3m2!1sen!2sth!4v1684340239744!5m2!1sen!2sth" 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3370.863099173062!2d34.90968827658808!3d32.34238460606908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d16a555555555%3A0xeef2b9c4fa52e717!2sRuppin%20Academic%20Center!5e0!3m2!1sen!2sil!4v1718376855157!5m2!1sen!2sil" 
                       width="100%" 
                       height="250" 
                       style={{ border: '0' }} 
@@ -36,6 +36,7 @@ export const ContactSection: React.FC<ContactSectionComponentProps> = () => {
               <p>Bay St &amp;, Larkin St, San Francisco, CA 94109, United States</p>
 
               <hr />
+              
 
               <p className="d-flex align-items-center mb-1">
                 <span className="me-2">Phone</span>
