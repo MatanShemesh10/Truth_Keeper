@@ -1,45 +1,107 @@
-import React, { useRef, useState } from 'react';
-
+import React, { useState, useRef, useEffect } from 'react';
 import './heroSection.css';
 import { HeroSectionComponentProps } from './heroSection.interface';
 
 export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [buttonText, setButtonText] = useState('Let Me Try!');
+  const [messages, setMessages] = useState<{ text: string; sender: string; confidence?: string }[]>([]);
+  const chatboxRef = useRef<HTMLDivElement>(null);
+  const userInputRef = useRef<HTMLInputElement>(null);
 
+  const handleChatboxClick = () => {
+    setIsExpanded(true);
+    setButtonText('Return to the chat');
+  };
 
-    return (
-        <section className="hero-section d-flex justify-content-center align-items-center" id="section_1">
-        <div className="container">
-          <div className="row">
+  const handleClickOutside = (event: MouseEvent) => {
+    if (chatboxRef.current && !chatboxRef.current.contains(event.target as Node)) {
+      setIsExpanded(false);
+    }
+  };
 
-            <div className="col-lg-8 col-12 mx-auto">
-              <h2 className="text-white text-center">Try Truth Keeper Model</h2>
+  const sendMessage = async () => {
+    const userInput = userInputRef.current?.value;
+    if (!userInput) return;
 
-              <h6 className="text-center">Your shield against fake news.</h6>
+    setMessages([...messages, { text: userInput, sender: 'user' }]);
+    userInputRef.current.value = '';
 
-              <form method="get" className="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
-                <div className="input-group input-group-lg" style={{
-                  height: '250px',
-                  width: '900px',
+    const response = await fetch('http://127.0.0.1:8000/chat/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user_input: userInput }),
+    });
 
-                }}>
-                  <span className="input-group-text bi-search" id="basic-addon1">
+    let data = {
+      bot_response: "no response from the bot. Please try again.",
+      confidence_score: "no response from the bot. Please try again."
+    }
+    let myResponse = await response.json();
+    if (myResponse) 
+      {
+      data.bot_response = myResponse.bot_response;
+      data.bot_response = myResponse.confidence_score;
+      }
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { text: userInput, sender: 'user' },
+      { text: `Bot: ${data.bot_response}`, sender: 'bot', confidence: data.confidence_score[0] },
+    ]);
+  };
 
-                  </span>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    sendMessage();
+  };
 
-                  <input name="keyword" type="search" className="form-control" id="keyword" placeholder="Message Truth Keeper…" aria-label="Search" />
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <section className="hero-section" id="section_1">
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h2 className="text-center">Try Truth Keeper Model</h2>
+            <h6 className="text-center">We invite you to try our new model! Press on the chat box below.</h6>
+            <form className="custom-form" role="search" onSubmit={handleSubmit}>
+              {!isExpanded && (
+                <button
+                  type="button"
+                  className="try-button"
+                  onClick={handleChatboxClick}
+                >
+                  {buttonText}
+                </button>
+              )}
+              {(
+                <div className={`chatbox-container ${isExpanded ? 'expanded' : ''}`} ref={chatboxRef}>
+                  <div className="chat-content">
+                    <div id="chat-window">
+                      <div id="output">
+                        {messages.map((message, index) => (
+                          <div key={index} className={`message ${message.sender === 'user' ? 'user-message' : 'bot-message'}`}>
+                            {message.sender === 'user' ? `You: ${message.text}` : `${message.text} ${message.confidence ? `and the percentage of the answer is: ${message.confidence}` : ''}`}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <input type="text" id="user-input" ref={userInputRef} placeholder="Say something..." autoComplete="off" onKeyPress={(e) => { if (e.key === 'Enter') sendMessage(); }} />
+                    <button type="submit" style={{ marginTop: "10px" }}>Send</button>
+                  </div>
                 </div>
-                <button type="submit" className="form-control" style={{
-                  height: '50px',
-                  width: '300px',
-                  display: 'block',
-                  margin: '20px auto 0',
-                }}>Send</button>
-
-              </form>
-            </div>
-
+              )}
+            </form>
           </div>
         </div>
-      </section>
-    )
-}
+      </div>
+    </section>
+  );
+};
