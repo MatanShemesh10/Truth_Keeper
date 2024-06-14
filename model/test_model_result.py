@@ -24,14 +24,14 @@ def store_result(question_results, confidence_score, index):
         "confidence_score": confidence_score
     })
 
-def save_results():
-    with open('results.json', 'w') as file:
+def save_results(model_name):
+    with open(model_name + '_results.json', 'w') as file:
         json.dump(prediction_results, file)
     
-def send_req(question, index):
+def send_req(question, index, model_name):
     source_query = "TruthKeeper is a fake news detector bot. Return answer of True or False."
     response = openai.ChatCompletion.create(
-                model="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp",
+                model=model_name,
                 messages=[
                     {
                         "role": "system",
@@ -61,8 +61,8 @@ def send_req(question, index):
     store_result(question_results, confidence_score, index)
 
 
-def start():
-    source_jsonl = 'code/10_test_data.jsonl'
+def start(file_name, model_name):
+    source_jsonl = file_name
 
     with open(source_jsonl, 'r', encoding='utf-8-sig') as file:
         lines = file.readlines()
@@ -75,17 +75,17 @@ def start():
             for message in data["messages"]:
                 if message["role"] == "user":  # Check if the role is 'user'
                     # Replace HTTPS links in the 'content' field
-                    send_req(message["content"], index)
+                    send_req(message["content"], index, model_name)
                 elif message["role"] == "assistant":
                     real_results.append({
                         "index": index,
                         "result": message["content"]
                     })
 
-    save_results()
+    save_results(model_name)
 
 
-def compare_results():
+def compare_results(model_name):
 
     # Compare the first result of each object in the detailed_results with the result in simple_results
     accuracy = []
@@ -105,7 +105,20 @@ def compare_results():
             count_matches += 1
 
     print(f"Number of matches: {count_matches}")
+    # The sentence to add at the beginning of the file
+    additional_sentence = f"The number of matches is: {count_matches}\n"
+
+    # Read the existing content of the file
+    with open(model_name + '_results.json', 'r') as file:
+        content = file.read()
+
+    # Prepend the additional sentence to the content
+    new_content = additional_sentence + content
+
+    # Write the new content back to the file
+    with open(model_name + '_results.json', 'w') as file:
+        file.write(new_content)
 
 
-start()
-compare_results()
+start(file_name='500_test_data.jsonl',model_name="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp")
+compare_results(model_name="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp")
