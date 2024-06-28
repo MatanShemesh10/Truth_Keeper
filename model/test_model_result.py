@@ -3,8 +3,11 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
-import uvicorn
 import json
+import json
+import os
+import re
+
 
 # Your OpenAI API key should be kept secret and not exposed in the code
 openai.api_key = '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'
@@ -24,9 +27,25 @@ def store_result(question_results, confidence_score, index):
         "confidence_score": confidence_score
     })
 
+# Function to sanitize file name
+def sanitize_filename(filename):
+    return re.sub(r'[<>:"/\\|?*]', '_', filename)
+
+# Define the function to save results
 def save_results(model_name):
-    with open(model_name + '_results.json', 'w') as file:
+    # Sanitize the model name to create a valid file name
+    sanitized_model_name = sanitize_filename(model_name)
+    
+    # Ensure the directory exists
+    os.makedirs('results', exist_ok=True)
+    
+    # Define the file path
+    file_path = os.path.join('results', sanitized_model_name + '_results.json')
+    
+    # Write the results to the file
+    with open(file_path, 'w') as file:
         json.dump(prediction_results, file)
+
     
 def send_req(question, index, model_name):
     source_query = "TruthKeeper is a fake news detector bot. Return answer of True or False."
@@ -51,12 +70,12 @@ def send_req(question, index, model_name):
     confidence_score = []
     question_results = []
     for i, logprob in enumerate(top_two_logprobs):
-        print(f"Output token {i}: {logprob.token}")
+        # print(f"Output token {i}: {logprob.token}")
         question_results.append(logprob.token)
 
-        print(f"logprobs: {i}: {logprob.logprob}")
+        # print(f"logprobs: {i}: {logprob.logprob}")
         confidence_score.append(calculate_confidence(logprob.logprob))
-        print(f"probability {i}: {confidence_score[i]}")
+        # print(f"probability {i}: {confidence_score[i]}")
 
     store_result(question_results, confidence_score, index)
 
@@ -108,17 +127,24 @@ def compare_results(model_name):
     # The sentence to add at the beginning of the file
     additional_sentence = f"The number of matches is: {count_matches}\n"
 
+     # Sanitize the model name to create a valid file name
+    sanitized_model_name = sanitize_filename(model_name)
+    
+    # Define the file path
+    file_path = os.path.join('results', sanitized_model_name + '_results.json')
+
     # Read the existing content of the file
-    with open(model_name + '_results.json', 'r') as file:
+    with open(file_path, 'r') as file:
         content = file.read()
 
     # Prepend the additional sentence to the content
     new_content = additional_sentence + content
 
     # Write the new content back to the file
-    with open(model_name + '_results.json', 'w') as file:
+    with open(file_path, 'w') as file:
         file.write(new_content)
 
 
-start(file_name='500_test_data.jsonl',model_name="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp")
-compare_results(model_name="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp")
+
+start(file_name='model/500_test_data.jsonl',model_name="ft:gpt-3.5-turbo-0613:matan:job-for-8-epochs:9cd8iPXG")
+compare_results(model_name="ft:gpt-3.5-turbo-0613:matan:job-for-8-epochs:9cd8iPXG")
