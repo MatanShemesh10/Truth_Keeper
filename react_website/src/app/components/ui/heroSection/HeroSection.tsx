@@ -6,8 +6,12 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [buttonText, setButtonText] = useState('Let Me Try!');
   const [messages, setMessages] = useState<{ text: string; sender: string; confidence?: string }[]>([]);
+  const [charCount, setCharCount] = useState(0);
+  const [showWarning, setShowWarning] = useState(false);
   const chatboxRef = useRef<HTMLDivElement>(null);
   const userInputRef = useRef<HTMLInputElement>(null);
+  const sendButtonRef = useRef<HTMLButtonElement>(null);
+  const userInputLimit = 140;
 
   const handleChatboxClick = () => {
     setIsExpanded(true);
@@ -24,8 +28,16 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
     const userInput = userInputRef.current?.value;
     if (!userInput) return;
 
+    if (userInput.length > userInputLimit) {
+      userInputRef.current.value = userInput.slice(0, userInputLimit);
+      setCharCount(userInputLimit);
+      return;
+    }
+
     setMessages([...messages, { text: userInput, sender: 'user' }]);
     userInputRef.current.value = '';
+    setCharCount(0);
+    setShowWarning(false);
 
     const response = await fetch('http://127.0.0.1:8000/chat/', {
       method: 'POST',
@@ -38,23 +50,42 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
     let data = {
       bot_response: "no response from the bot. Please try again.",
       confidence_score: "no response from the bot. Please try again."
-    }
+    };
     let myResponse = await response.json();
-    if (myResponse) 
-      {
+    if (myResponse) {
       data.bot_response = myResponse.bot_response;
-      data.bot_response = myResponse.confidence_score;
-      }
+      data.confidence_score = myResponse.confidence_score;
+    }
     setMessages((prevMessages) => [
       ...prevMessages,
-      { text: userInput, sender: 'user' },
       { text: `Bot: ${data.bot_response}`, sender: 'bot', confidence: data.confidence_score[0] },
     ]);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    sendMessage();
+    if (charCount <= userInputLimit) {
+      sendMessage();
+    } else {
+      setShowWarning(true);
+      if (sendButtonRef.current) {
+        sendButtonRef.current.classList.add('vibrate');
+        setTimeout(() => {
+          if (sendButtonRef.current) {
+            sendButtonRef.current.classList.remove('vibrate');
+          }
+        }, 1500); // Remove the class after the animation duration
+      }
+    }
+  };
+
+  const handleInputChange = () => {
+    if (userInputRef.current) {
+      setCharCount(userInputRef.current.value.length);
+      if (userInputRef.current.value.length <= userInputLimit) {
+        setShowWarning(false);
+      }
+    }
   };
 
   useEffect(() => {
@@ -88,13 +119,34 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
                       <div id="output">
                         {messages.map((message, index) => (
                           <div key={index} className={`message ${message.sender === 'user' ? 'user-message' : 'bot-message'}`}>
-                            {message.sender === 'user' ? `You: ${message.text}` : `${message.text} ${message.confidence ? `and the percentage of the answer is: ${message.confidence}` : ''}`}
+                            {message.sender === 'user' ? `You: ${message.text}` : `${message.text} \n ${message.confidence ? `. Percentage of accuracy: ${parseFloat(message.confidence).toFixed(2)}` : ''}`}
                           </div>
                         ))}
                       </div>
                     </div>
-                    <input type="text" id="user-input" ref={userInputRef} placeholder="Say something..." autoComplete="off" onKeyPress={(e) => { if (e.key === 'Enter') sendMessage(); }} />
-                    <button type="submit" style={{ marginTop: "10px" }}>Send</button>
+                    <div className="input-container">
+                      <input
+                        type="text"
+                        id="user-input"
+                        ref={userInputRef}
+                        placeholder="Say something..."
+                        autoComplete="off"
+                        onKeyPress={(e) => { if (e.key === 'Enter') sendMessage(); }}
+                        onChange={handleInputChange}
+                      />
+                      <div className={`char-counter ${charCount > userInputLimit ? 'over-limit' : ''}`}>{charCount}/{userInputLimit}</div>
+                      <button
+                        type="submit"
+                        className="submit-button"
+                        disabled={charCount > userInputLimit}
+                        ref={sendButtonRef}
+                      >
+                        Send
+                      </button>
+                    </div>
+                    {showWarning && (
+                      <div className="warning-text">You have exceeded the number of letters that the model allows</div>
+                    )}
                   </div>
                 </div>
               )}

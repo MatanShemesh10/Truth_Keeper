@@ -134,7 +134,7 @@ def compare_results(model_name):
     actual_accuracy = (count_matches / len(accuracy)) * 100
     print(f"Actual Accuracy: {actual_accuracy}%")
     # The sentence to add at the beginning of the file
-    additional_sentence = f"The number of matches is: {count_matches}\nActual Accuracy: {actual_accuracy}%"
+    additional_sentence = f"The number of matches is: {count_matches}\nActual Accuracy: {actual_accuracy}%\n"
 
      # Sanitize the model name to create a valid file name
     sanitized_model_name = sanitize_filename(model_name)
