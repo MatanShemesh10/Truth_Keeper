@@ -48,8 +48,8 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
     });
 
     let data = {
-      bot_response: "no response from the bot. Please try again.",
-      confidence_score: "no response from the bot. Please try again."
+      bot_response: "no response from the bot. Please try again later.",
+      confidence_score: "no response from the bot. Please try again later."
     };
     let myResponse = await response.json();
     if (myResponse) {
@@ -144,7 +144,7 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
                         Send
                       </button>
                     </div>
-                    {showWarning && (
+                    {showWarning && ( //need to fix it
                       <div className="warning-text">You have exceeded the number of letters that the model allows</div>
                     )}
                   </div>

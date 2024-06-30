@@ -26,7 +26,7 @@ class UserInput(BaseModel):
 
 
 # Now, ask GPT about the source and accuracy of its response
-source_query = "TruthKeeper is a fake news detector bot. Return answer of True or False."
+source_query = "TruthKeeper is a fake news detector bot. Return answer of True or False. you cannot return something else but 'True' or False'."
 
 @app.post("/chat/")
 async def send_request(user_input: UserInput):
