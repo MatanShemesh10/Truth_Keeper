@@ -51,32 +51,32 @@ export const FeaturedSection: React.FC<FeaturedSectionComponentProps> = () => {
 
                       <p className="text-white">As social media usage soars, there is an urgent need for AI and advanced algorithms to identify and manage large-scale misinformation, a task too complex for manual handling.
 
-                        Our services addresses this by developing mechanisms to protect the global community.</p>
+                        Our services addresses this by developing mechanisms to protect the global community. <a href="#section_5" className='join-as'>Join as today!</a></p>
 
-                      <a href="topics-detail.html" className="btn custom-btn mt-2 mt-lg-3">Learn More</a>
+                      <a href="#section_3" className="btn custom-btn mt-2 mt-lg-3" >Learn More</a>
                     </div>
 
                     <span className="badge bg-finance rounded-pill ms-auto">2</span>
                   </div>
 
                   <div className="social-share d-flex">
-                    <p className="text-white me-4">Share:</p>
+                      <p className="text-white me-4">Share:</p>
 
-                    <ul className="social-icon">
-                      <li className="social-icon-item">
-                        <a href="#" className="social-icon-link bi-twitter"></a>
-                      </li>
+                      <ul className="social-icon">
+                          <li className="social-icon-item">
+                              <a href="https://twitter.com/intent/tweet?text=Let's%20discover%20Truth%20Kepper%20together!%20https://truthkeeper.com" target="_blank" className="social-icon-link bi-twitter"></a>
+                          </li>
 
-                      <li className="social-icon-item">
-                        <a href="#" className="social-icon-link bi-facebook"></a>
-                      </li>
+                          <li className="social-icon-item">
+                          <a href="https://www.facebook.com/sharer/sharer.php?u=https://truthkeeper.com" target="_blank" className="social-icon-link bi-facebook"></a>
+                          </li>
 
-                      <li className="social-icon-item">
-                        <a href="#" className="social-icon-link bi-pinterest"></a>
-                      </li>
-                    </ul>
+                          <li className="social-icon-item">
+                          <a href="https://pinterest.com/pin/create/button/?url=https://truthkeeper.com&description=Let's%20discover%20Truth%20Keeper%20together!%20https://truthkeeper.com" target="_blank" className="social-icon-link bi-pinterest"></a>
+                          </li>
+                      </ul>
 
-                    <a href="#" className="custom-icon bi-bookmark ms-auto"></a>
+                      <a href="#" className="custom-icon bi-bookmark ms-auto"></a>
                   </div>
 
                   <div className="section-overlay"></div>
