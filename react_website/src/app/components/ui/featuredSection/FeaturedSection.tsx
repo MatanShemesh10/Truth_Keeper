@@ -16,7 +16,6 @@ export const FeaturedSection: React.FC<FeaturedSectionComponentProps> = () => {
 
             <div className="col-lg-4 col-12 mb-4 mb-lg-0">
               <div className="custom-block bg-white shadow-lg">
-                <a href="topics-detail.html">
                   <div className="d-flex">
                     <div>
                       <h5 className="mb-2">Our Services</h5>
@@ -33,7 +32,6 @@ export const FeaturedSection: React.FC<FeaturedSectionComponentProps> = () => {
                     display: 'block',
                     margin: '20px auto 0',
                   }} />
-                </a>
               </div>
             </div>
 
