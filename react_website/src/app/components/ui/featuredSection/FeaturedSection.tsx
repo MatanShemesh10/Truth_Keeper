@@ -16,7 +16,6 @@ export const FeaturedSection: React.FC<FeaturedSectionComponentProps> = () => {
 
             <div className="col-lg-4 col-12 mb-4 mb-lg-0">
               <div className="custom-block bg-white shadow-lg">
-                <a href="topics-detail.html">
                   <div className="d-flex">
                     <div>
                       <h5 className="mb-2">Our Services</h5>
@@ -33,7 +32,6 @@ export const FeaturedSection: React.FC<FeaturedSectionComponentProps> = () => {
                     display: 'block',
                     margin: '20px auto 0',
                   }} />
-                </a>
               </div>
             </div>
 
@@ -51,9 +49,9 @@ export const FeaturedSection: React.FC<FeaturedSectionComponentProps> = () => {
 
                       <p className="text-white">As social media usage soars, there is an urgent need for AI and advanced algorithms to identify and manage large-scale misinformation, a task too complex for manual handling.
 
-                        Our services addresses this by developing mechanisms to protect the global community. <a href="#section_5" className='join-as'>Join as today!</a></p>
+                        Our services addresses this by developing mechanisms to protect the global community. <a href="#contact_section" className='join-as'>Join as today!</a></p>
 
-                      <a href="#section_3" className="btn custom-btn mt-2 mt-lg-3" >Learn More</a>
+                      <a href="#explore_section" className="btn custom-btn mt-2 mt-lg-3" >Learn More</a>
                     </div>
 
                     <span className="badge bg-finance rounded-pill ms-auto">2</span>
