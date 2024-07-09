@@ -54,7 +54,7 @@ export const Navbar: React.FC<INavbarComponentProps> = () => {
 
 
     return (
-        <nav className="navbar navbar-expand-lg">
+        <nav className="navbar navbar-expand-lg" style={{width:'100%', position:'fixed',top:'0px'}}>
             <div className="container">
                 <a className="navbar-brand" href="index.html">
                     <img src={LogoImage} className="" alt="" style={{
@@ -75,41 +75,25 @@ export const Navbar: React.FC<INavbarComponentProps> = () => {
                 <div ref={menuContainerRef} className={`collapse navbar-collapse ${isMenuOpen === 'true' ? 'show' : isMenuOpen === 'pending' ? 'collapsing' : ''}`} id="navbarNav">
                     <ul className="navbar-nav ms-lg-5 me-lg-auto">
                         <li className="nav-item">
-                            <a className="nav-link click-scroll" href="#section_1">Home</a>
+                            <a className="nav-link click-scroll" href="#hero_section">Home</a>
                         </li>
 
                         <li className="nav-item">
-                            <a className="nav-link click-scroll" href="#section_2">Browse Services</a>
+                            <a className="nav-link click-scroll" href="#explore_section">Browse Services</a>
                         </li>
 
                         <li className="nav-item">
-                            <a className="nav-link click-scroll" href="#section_3">How it works</a>
+                            <a className="nav-link click-scroll" href="#timeline_section">How it works</a>
                         </li>
 
                         <li className="nav-item">
-                            <a className="nav-link click-scroll" href="#section_4">FAQs</a>
+                            <a className="nav-link click-scroll" href="#faq_section">FAQs</a>
                         </li>
 
                         <li className="nav-item">
-                            <a className="nav-link click-scroll" href="#section_5">Contact</a>
+                            <a className="nav-link click-scroll" href="#contact_section">Contact</a>
                         </li>
 
-                        <li className="nav-item dropdown">
-                            <a
-                                className="nav-link dropdown-toggle"
-                                href="#" id="navbarLightDropdownMenuLink"
-                                role="button" data-bs-toggle="dropdown"
-                                aria-expanded={isMenuOpen === 'pending' ? 'false' : 'true'}
-                            >
-                                Pages
-                            </a>
-
-                            <ul className="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a className="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
-
-                                <li><a className="dropdown-item" href="contact.html">Contact Form</a></li>
-                            </ul>
-                        </li>
                     </ul>
 
                     <div className="d-none d-lg-block">
