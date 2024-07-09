@@ -96,7 +96,7 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
   }, []);
 
   return (
-    <section className="hero-section" id="section_1">
+    <section className="hero-section" id="hero_section">
       <div className="container">
         <div className="row">
           <div className="col">

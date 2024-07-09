@@ -10,7 +10,7 @@ export const ContactSection: React.FC<ContactSectionComponentProps> = () => {
 
 
     return (
-        <section className="contact-section section-padding section-bg" id="section_5">
+        <section className="contact-section section-padding section-bg" id="contact_section">
         <div className="container">
           <div className="row">
 
@@ -31,7 +31,7 @@ export const ContactSection: React.FC<ContactSectionComponentProps> = () => {
             </div>
 
             <div className="col-lg-3 col-md-6 col-12 mb-3 mb-lg- mb-md-0 ms-auto">
-              <h4 className="mb-3">Head office</h4>
+              <h4 className="mb-3">Head Office</h4>
 
               <p>Bay St &amp;, Larkin St, San Francisco, CA 94109, United States</p>
 
@@ -56,7 +56,7 @@ export const ContactSection: React.FC<ContactSectionComponentProps> = () => {
             </div>
 
             <div className="col-lg-3 col-md-6 col-12 mx-auto">
-              <h4 className="mb-3">Dubai office</h4>
+              <h4 className="mb-3">Silicon Valley Office</h4>
 
               <p>Burj Park, Downtown Dubai, United Arab Emirates</p>
 
@@ -66,7 +66,7 @@ export const ContactSection: React.FC<ContactSectionComponentProps> = () => {
                 <span className="me-2">Phone</span>
 
                 <a href="tel: 110-220-3400" className="site-footer-link">
-                  110-220-3400
+                +972-09-7695408
                 </a>
               </p>
 
@@ -74,7 +74,7 @@ export const ContactSection: React.FC<ContactSectionComponentProps> = () => {
                 <span className="me-2">Email</span>
 
                 <a href="mailto:info@company.com" className="site-footer-link">
-                  info@company.com
+                  info@TruthKeeper.com
                 </a>
               </p>
             </div>
