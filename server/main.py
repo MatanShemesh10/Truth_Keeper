@@ -27,7 +27,7 @@ class UserInput(BaseModel):
 chat_history = []
 
 # Now, ask GPT about the source and accuracy of its response
-source_query = "Where did you get this information from, and what is the percent of accuracy of your response? in addition to answer the user, write to the console to much accuracy_pattern = r'(\d+)%' source_pattern = r'The information is based on (.+)'"
+source_query = "what is the percent of accuracy of your response? in addition to answer the user, write to the console to much accuracy_pattern = r'(\d+)%' source_pattern = r'The information is based on (.+)'"
 chat_history.append({'role': 'system', 'content': source_query})
 
 @app.get("/")
@@ -43,7 +43,7 @@ async def chat_with_bot(user_input: UserInput):
 
         # Get the response to the user's question
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp",
             messages=chat_history
         )
         
