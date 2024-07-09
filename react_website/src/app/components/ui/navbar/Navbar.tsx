@@ -79,7 +79,7 @@ export const Navbar: React.FC<INavbarComponentProps> = () => {
                         </li>
 
                         <li className="nav-item">
-                            <a className="nav-link click-scroll" href="#section_2">Browse Topics</a>
+                            <a className="nav-link click-scroll" href="#section_2">Browse Services</a>
                         </li>
 
                         <li className="nav-item">
