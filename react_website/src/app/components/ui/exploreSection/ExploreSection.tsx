@@ -3,26 +3,29 @@ import React, { useRef, useState } from 'react';
 import './exploreSection.css';
 import { ExploreSectionComponentProps } from './ExploreSection.interface';
 
-import UndrawRemoteDesignTeamImage from '@images/undraw_Remote_design_team_re_urdx.png'
-import UndrawRedesignFeedbackImage from '@images/undraw_Redesign_feedback_re_jvm0.png'
-import ColleaguesWorkingCozyOfficeImage from '@images/colleagues-working-cozy-office-medium-shot.png'
-import UndrawGroupVideoImage from '@images/undraw_Group_video_re_btu7.png'
-import UndrawPodcastAudienceImage from '@images/undraw_Podcast_audience_re_4i5q.png'
-import undrawOnlineAdReOl62 from '@images/undraw_online_ad_re_ol62.png'
-import undrawViralTweetGndb from '@images/undraw_viral_tweet_gndb.png'
-import undrawFinanceReGnv2 from '@images/undraw_Finance_re_gnv2.png'
-import businesswomanUsingTabletAnalysis from '@images/businesswoman-using-tablet-analysis.jpg'
-import undrawComposeMusicReWpiw from '@images/undraw_Compose_music_re_wpiw.png'
-import undraw_happy_music_g6wc from '@images/undraw_happy_music_g6wc.png'
-import undrawGraduationReGthn from '@images/undraw_Graduation_re_gthn.png'
-import undrawEducator from '@images/undraw_Educator_re_ju47.png'
+import Truth_Tracker_Custom_Integration from '@images/Truth_Tracker_Custom_Integration.jpg';
+import Truth_Tracker_Keyword_Analysis from '@images/Truth_Tracker_Keyword_Analysis.jpg';
+import Truth_Tracker_Reputation_Defense from '@images/Truth_Tracker_Reputation_Defense.jpg';
+import Built_in_Chatbot_Instant_Verification from '@images/Built-in_Chatbot_Instant_Verification.jpg';
+import Built_in_Chatbot_Interactive_and_Efficient from '@images/Built-in_Chatbot_Interactive_and_Efficient.jpg';
+import Built_in_Chatbot_Seamless_Integration from '@images/Built-in_Chatbot_Seamless_Integration.jpg';
+import Chrome_Extension_Easy_Access from '@images/Chrome_Extension_Easy_Access.jpg';
+import Chrome_Extension_Quick_Results from '@images/Chrome_Extension_Quick_Results.jpg';
+import Chrome_Extension_Seamless_Experience from '@images/Chrome_Extension_Seamless_Experience.jpg';
+import Interactive_Verification_Banner_Real_time_Verification from '@images/Interactive_Verification_Banner_Real-time_Verification.jpg';
+import Interactive_Verification_Banner_User_Friendly from '@images/Interactive_Verification_Banner_User-Friendly.jpg';
+import Interactive_Verification_Banner_Instant_Feedback from '@images/Interactive_Verification_Banner_Instant_Feedback.jpg';
+import Standalone_Website_Direct_Communication from '@images/Standalone_Website_Direct_Communication.jpg';
+import Standalone_Website_Comprehensive_Information from '@images/Standalone_Website_Comprehensive_Information.jpg';
+import Standalone_Website_User_Friendly_Interface from '@images/Standalone_Website_User_Friendly_Interface.jpg';
+
 
 
 export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
 
 
     return (
-    <section className="explore-section section-padding" id="section_2">
+    <section className="explore-section section-padding" id="explore_section">
         <div className="container">
           <div className="row">
 
@@ -67,7 +70,6 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                 <div className="row">
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Custom Integration</h5>
@@ -75,14 +77,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-design rounded-pill ms-auto">14</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Truth_Tracker_Custom_Integration} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Keyword Analysis</h5>
@@ -90,14 +90,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-design rounded-pill ms-auto">75</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Truth_Tracker_Keyword_Analysis} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Reputation Defense</h5>
@@ -105,8 +103,7 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-design rounded-pill ms-auto">100</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Truth_Tracker_Reputation_Defense} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
                 </div>
@@ -116,7 +113,6 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                 <div className="row">
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Easy Access</h5>
@@ -124,14 +120,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-advertising rounded-pill ms-auto">30</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Chrome_Extension_Easy_Access} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Quick Results</h5>
@@ -139,14 +133,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-advertising rounded-pill ms-auto">65</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Chrome_Extension_Quick_Results} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Seamless Experience</h5>
@@ -154,8 +146,7 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-advertising rounded-pill ms-auto">50</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Chrome_Extension_Seamless_Experience} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
                 </div>
@@ -165,7 +156,6 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                 <div className="row">
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Direct Communication</h5>
@@ -173,14 +163,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-finance rounded-pill ms-auto">30</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Standalone_Website_Direct_Communication} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Comprehensive Information</h5>
@@ -188,14 +176,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-finance rounded-pill ms-auto">65</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Standalone_Website_Comprehensive_Information} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">User-Friendly Interface</h5>
@@ -203,8 +189,7 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-finance rounded-pill ms-auto">50</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Standalone_Website_User_Friendly_Interface} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
                 </div>
@@ -214,7 +199,6 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                 <div className="row">
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Instant Verification</h5>
@@ -222,14 +206,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-music rounded-pill ms-auto">45</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Built_in_Chatbot_Instant_Verification} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Interactive and Efficient</h5>
@@ -237,14 +219,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-music rounded-pill ms-auto">45</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Built_in_Chatbot_Interactive_and_Efficient} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Seamless Integration</h5>
@@ -252,8 +232,7 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-music rounded-pill ms-auto">20</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Built_in_Chatbot_Seamless_Integration} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
                 </div>
@@ -263,7 +242,6 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                 <div className="row">
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Real-time Verification</h5>
@@ -271,14 +249,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-education rounded-pill ms-auto">80</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Interactive_Verification_Banner_Real_time_Verification} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">User-Friendly</h5>
@@ -286,14 +262,12 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-education rounded-pill ms-auto">75</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Interactive_Verification_Banner_User_Friendly} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
 
                   <div className="col-lg-4 col-md-6 col-12">
                     <div className="custom-block bg-white shadow-lg">
-                      <a href="topics-detail.html">
                         <div className="d-flex">
                           <div>
                             <h5 className="mb-2">Instant Feedback</h5>
@@ -301,8 +275,7 @@ export const ExploreSection: React.FC<ExploreSectionComponentProps> = () => {
                           </div>
                           <span className="badge bg-education rounded-pill ms-auto">50</span>
                         </div>
-                        <img src="path_to_image" className="custom-block-image img-fluid" alt="" />
-                      </a>
+                        <img src={Interactive_Verification_Banner_Instant_Feedback} className="custom-block-image img-fluid" alt="" />
                     </div>
                   </div>
                 </div>
