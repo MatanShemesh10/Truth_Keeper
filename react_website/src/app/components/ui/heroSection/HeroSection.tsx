@@ -39,7 +39,7 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
     setCharCount(0);
     setShowWarning(false);
 
-    const response = await fetch('http://127.0.0.1:8000/chat/', {
+    const response = await fetch('https://truthkeeper-4xhsxxcd7-matans-projects-eda9eab3.vercel.app/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
