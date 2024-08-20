@@ -40,7 +40,7 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
     setShowWarning(false);
   
     try {
-      const response = await fetch('http://truth-keeper-server.vercel.app/chat/', {
+      const response = await fetch('https://truth-keeper-server.vercel.app/chat/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
