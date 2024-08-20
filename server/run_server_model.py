@@ -1,4 +1,5 @@
 import openai
+from openai import OpenAI
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,9 +18,12 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-# Your OpenAI API key should be kept secret and not exposed in the code
-openai.api_key = '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'
+# # Your OpenAI API key should be kept secret and not exposed in the code
+# openai.api_key = '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'
 
+client = OpenAI(
+    api_key='sk-9cSwF2j6h9X2ucpdxGwRbuF-cxB7GMXS3QHcEDZDa8T3BlbkFJi9_MvNuVKvUVU5_1cUS1EKEa_eaSsinVX_tWTABXAA'
+)
 # Model for user input
 class UserInput(BaseModel):
     user_input: str
@@ -33,7 +37,7 @@ async def send_request(user_input: UserInput):
     
     try:
         print(user_input.user_input)
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp",
             messages=[
                 {
@@ -60,7 +64,7 @@ async def send_request(user_input: UserInput):
 
             
         return {
-            "bot_response": response.choices[0].message['content'],
+            "bot_response": response.choices[0].message.content,
             "confidence_score": confidence_score
         }
     except Exception as e:
