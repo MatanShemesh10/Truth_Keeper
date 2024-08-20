@@ -12,10 +12,10 @@ app = FastAPI()
 # Setup CORS (Cross-Origin Resource Sharing)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=["http://localhost:3000/"],  # Allows all origins
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["GET","POST"],  # Allows all methods
+    allow_headers=["Content-Type", "Authorization"],  # Allows all headers
 )
 
 # # Your OpenAI API key should be kept secret and not exposed in the code
