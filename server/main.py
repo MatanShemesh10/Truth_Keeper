@@ -12,7 +12,7 @@ app = FastAPI()
 # Setup CORS (Cross-Origin Resource Sharing)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000/","https://truth-keeper-git-main-ariel-cohens-projects-359ba03e.vercel.app/"],  # Allows all origins
+    allow_origins=["http://localhost:3000/","https://truth-keeper-git-main-ariel-cohens-projects-359ba03e.vercel.app/","https://truth-keeper-inky.vercel.app"],  # Allows all origins
     allow_credentials=True,
     allow_methods=["GET","POST"],  # Allows all methods
     allow_headers=["Content-Type", "Authorization"],  # Allows all headers
