@@ -27,40 +27,59 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
   const sendMessage = async () => {
     const userInput = userInputRef.current?.value;
     if (!userInput) return;
-
+  
     if (userInput.length > userInputLimit) {
       userInputRef.current.value = userInput.slice(0, userInputLimit);
       setCharCount(userInputLimit);
       return;
     }
-
+  
     setMessages([...messages, { text: userInput, sender: 'user' }]);
     userInputRef.current.value = '';
     setCharCount(0);
     setShowWarning(false);
-
-    const response = await fetch('http://127.0.0.1:8000/chat/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user_input: userInput }),
-    });
-
-    let data = {
-      bot_response: "no response from the bot. Please try again later.",
-      confidence_score: "no response from the bot. Please try again later."
-    };
-    let myResponse = await response.json();
-    if (myResponse) {
-      data.bot_response = myResponse.bot_response;
-      data.confidence_score = myResponse.confidence_score;
+  
+    try {
+      const response = await fetch('http://127.0.0.1:8000/chat/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_input: userInput }),
+      });
+  
+      let data = {
+        bot_response: "No response. Please try again later.",
+        confidence_score: ''
+      };
+  
+      if (response.ok) {
+        let myResponse = await response.json();
+        if (myResponse) {
+          data.bot_response = myResponse.bot_response;
+          data.confidence_score = myResponse.confidence_score;
+        }
+      } else {
+        console.error('Failed to fetch: Server responded with an error.');
+      }
+  
+      const confidenceText = data.confidence_score
+        ? ` `
+        : '';
+  
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: `TruthKeeper: ${data.bot_response}${confidenceText ? `. ${confidenceText}` : ''}`, sender: 'bot', confidence: data.confidence_score[0] || "no response" },
+      ]);
+    } catch (error) {
+      console.error('Failed to fetch: No response from the server. Please try again later.');
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: `TruthKeeper: No response. Please try again later.`, sender: 'bot', confidence: "no response" },
+      ]);
     }
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { text: `Bot: ${data.bot_response}`, sender: 'bot', confidence: data.confidence_score[0] },
-    ]);
   };
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,11 +136,15 @@ export const HeroSection: React.FC<HeroSectionComponentProps> = () => {
                   <div className="chat-content">
                     <div id="chat-window">
                       <div id="output">
-                        {messages.map((message, index) => (
-                          <div key={index} className={`message ${message.sender === 'user' ? 'user-message' : 'bot-message'}`}>
-                            {message.sender === 'user' ? `You: ${message.text}` : `${message.text} \n ${message.confidence ? `. Percentage of accuracy: ${parseFloat(message.confidence).toFixed(2)}` : ''}`}
-                          </div>
-                        ))}
+                      {messages.map((message, index) => (
+  <div key={index} className={`message ${message.sender === 'user' ? 'user-message' : 'bot-message'}`}>
+    {message.sender === 'user' 
+      ? `You: ${message.text}` 
+      : `${message.text}${message.confidence ? `\nPercentage of accuracy: ${parseFloat(message.confidence).toFixed(2)}` : ''}`}
+  </div>
+))}
+
+
                       </div>
                     </div>
                     <div className="input-container">

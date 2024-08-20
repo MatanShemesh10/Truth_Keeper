@@ -4,6 +4,7 @@ import './navbar.css';
 import { INavbarComponentProps } from './Navbar.interface';
 
 import LogoImage from '@images/logosingle.png'
+import DonwloadChromeEx from '@images/download_chrome.png'
 import { preformOnDelay } from '@/app/handlers/perform-on-delay';
 
 export const Navbar: React.FC<INavbarComponentProps> = () => {
@@ -59,6 +60,7 @@ export const Navbar: React.FC<INavbarComponentProps> = () => {
                 <a className="navbar-brand" href="index.html">
                     <img src={LogoImage} className="" alt="" style={{
                         height: '100px',
+                        width: '400px',
                         display: 'inline-flex',
                     }} />
 
@@ -99,6 +101,14 @@ export const Navbar: React.FC<INavbarComponentProps> = () => {
                     <div className="d-none d-lg-block">
                         <a href="#top" className="navbar-icon bi-person smoothscroll"></a>
                     </div>
+
+                    <div className="d-none d-lg-block">
+                        <a href="https://chromewebstore.google.com/search/Truth%20Keeper" className="download_chrome_ex" target="_blank" rel="noopener noreferrer">
+                            <img src={DonwloadChromeEx} alt="Download Chrome Extension" style={{ width: '230px', height: '70px', marginLeft: '50px' }} />
+                        </a>
+                    </div>
+
+
                 </div>
             </div>
         </nav >
