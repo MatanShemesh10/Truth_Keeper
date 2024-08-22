@@ -28,9 +28,14 @@ $(document).ready(function() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                // mode: 'no-cors',
+                mode: 'cors',
                 body: JSON.stringify({ "user_input": userInput })
             });
+
+            if (!response.ok) {
+                // If the response is not ok, throw an error with the status
+                throw new Error(`HTTP status ${response.status}`);
+            }
             
             
             const data = await response.json();
@@ -46,7 +51,7 @@ $(document).ready(function() {
             $('#loading').hide();
     
             // Display an error message in the custom alert
-            $('#custom-alert-message').text('An error occurred. Please try again.');
+            $('#custom-alert-message').text(`Error: ${error.message}`);
             $('#custom-alert').show();
         }
     }

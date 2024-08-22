@@ -17,9 +17,14 @@
     }
   },
   "permissions": [
+    "https://truth-keeper-server.vercel.app/chat",
     "storage",
     "notifications",
     "contextMenus"
   ],
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "content_security_policy": {
+    "script-src": "'self' https://truth-keeper-server.vercel.app",
+    "object-src": "'self'"
+  }
 }
