@@ -55,7 +55,6 @@ export const Navbar: React.FC<INavbarComponentProps> = () => {
 
 
     return (
-        <meta name="google-site-verification" content="dFBVdShX6KItmVFhEueKZwrSAjqd9JpIruHr2oFyY5U" />
         <nav className="navbar navbar-expand-lg" style={{width:'100%', position:'fixed',top:'0px'}}>
             <div className="container">
                 <a className="navbar-brand" href="index.html">
