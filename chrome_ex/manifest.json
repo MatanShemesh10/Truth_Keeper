@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Truth Keeper",
-  "description": "Truth Keeper is an AI-powered extension that protects you from misinformation. Insert any text, and it will label it as true or false, along with an accuracy percentage based on advanced Large Language Models (LLMs). Stay informed and trust the information you consume with Truth Keeper.",
+  "description": "Truth Keeper: AI extension that labels text as true or false with accuracy, using advanced LLMs. Stay informed and protected.",
   "version": "0.1.0",
   "icons": {
     "128": "icon128.png",
