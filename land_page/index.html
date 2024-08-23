@@ -4,37 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Project Landing Page</title>
-    <link rel="stylesheet" href="design.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #4d97b2, #39a9a9, #81d8d0);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+        .footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px; /* Increased font size for footer */
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #ecf0f1;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .logo {
+            width: 600px;
+            margin: 0 auto 20px auto;
+            display: block;
+            padding-right: 30px;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .blocks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .block {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+        .block:hover {
+            background-color: #f0f0f0;
+        }
+        .block img {
+            margin-top: 10px;
+            max-width: 100%;
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header with Logo -->
-    <header class="header">
-        <img src="C:\Users\mz6l4w\Study\Repo_fake_news\truth_keeper\react_website\src\assets\images\logosingle.png" alt="Your Logo" class="logo" >
-    </header>
-
-    <!-- Main Content with Blocks -->
+    <!-- Main Content with Logo and Blocks -->
     <main class="main-content">
         <div class="blocks-container">
-            <a href="http://localhost:3000/" class="block">
-                <h2>Visit Our Website - TruthKepper.com</h2>
+            <img src="truth_keeper_logo.png" alt="Your Logo" class="logo">
+            <a href="https://truth-keeper-inky.vercel.app/" class="block" target="_blank">
+                <h3>Visit Our Website - TruthKeeper.com</h3>
             </a>
             <a href="https://chromewebstore.google.com/search/Truth%20Keeper" class="block" target="_blank" rel="noopener noreferrer">
-                <h2>Download Our Chrome Extension</h2>
-                <img src="C:\Users\mz6l4w\Study\Repo_fake_news\truth_keeper\react_website\src\assets\images\download_chrome.png" style="width: 200px;">
+                <h3>Download Our Chrome Extension</h3>
             </a>
             <a href="https://docs.google.com/document/d/1E6FPia8dwIuyFMmJ8wE1sApUGY9lUDEVKctyjohC_DE/edit#heading=h.cjslg98g2vvn" class="block" target="_blank" rel="noopener noreferrer">
-                <h2>Project Documentation</h2>
+                <h3>Project Documentation</h3>
             </a>
             <a href="https://docs.google.com/presentation/d/1DoHMffY5pto7tczGccONYOmIKjGva2xw/edit#slide=id.p1" class="block" target="_blank" rel="noopener noreferrer">
-                <h2>Project Presentation</h2>
+                <h3>Project Presentation</h3>
             </a>
         </div>
     </main>
 
     <!-- Footer with Credits -->
     <footer class="footer">
-        <p>© 2024 TruthKepper.</p>
-        <p>Credits: Matan Shemesh & Ariel Cohen - Developer</p>
+        <p>© 2024 TruthKeeper. All rights reserved.</p>
+        <p>Developed by <a href="https://www.linkedin.com/in/matanshemesh/" target="_blank">Matan Shemesh</a> & <a href="https://www.linkedin.com/in/%D7%90%D7%A8%D7%99%D7%90%D7%9C-%D7%9B%D7%94%D7%9F-550964258/" target="_blank">Ariel Cohen</a></p>
     </footer>
 </body>
 </html>
