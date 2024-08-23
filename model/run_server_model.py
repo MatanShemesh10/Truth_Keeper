@@ -76,7 +76,7 @@ async def send_request(user_input: UserInput):
     try:
         count_tokens, updated_input_text = count_and_summary_user_input(user_input.user_input)
         print(updated_input_text)
-        if count_tokens < 3:
+        if count_tokens < 4:
             return JSONResponse(content={
             "bot_response": "The input is too short. Please enter a longer sentence to proceed.",
             "confidence_score": "N/A"
@@ -85,6 +85,7 @@ async def send_request(user_input: UserInput):
             "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
             "Access-Control-Allow-Headers": "*"
         })
+        
         response = openai.ChatCompletion.create(
             model="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp",
             messages=[
