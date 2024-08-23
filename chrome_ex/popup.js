@@ -46,12 +46,17 @@ $(document).ready(function() {
             // Append bot response
             $('#output').append(`<div class="message bot-message">Bot: ${data.bot_response}. Percentage of accuracy: ${parseFloat(data.confidence_score[0]).toFixed(2)}</div>`);
             $('#output').scrollTop($('#output')[0].scrollHeight); // Scroll to the bottom
-        } catch (error) {
+        } 
+        catch (error) 
+        {
             // Hide loading animation
             $('#loading').hide();
     
             // Display an error message in the custom alert
-            $('#custom-alert-message').text(`Error: ${error.message}`);
+            const userMessage = 'An error occurred. Please try again.';
+            const developerMessage = `Developer Note: ${error.message}`;
+
+            $('#custom-alert-message').html(`${userMessage}<br><small>${developerMessage}</small>`);
             $('#custom-alert').show();
         }
     }

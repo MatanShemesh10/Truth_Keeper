@@ -16,15 +16,15 @@
       "128": "icon128.png"
     }
   },
-  "permissions": [
-    "https://truth-keeper-server.vercel.app/chat",
-    "storage",
-    "notifications",
-    "contextMenus"
+  "host_permissions": [
+    "*://truth-keeper-server.vercel.app/chat"
   ],
-  "options_page": "options.html",
-  "content_security_policy": {
-    "script-src": "'self' https://truth-keeper-server.vercel.app",
-    "object-src": "'self'"
-  }
+  "permissions": [
+    "storage"
+  ],
+  "options_page": "options.html"
+  // "content_security_policy": {
+  //   "script-src": "'self' https://truth-keeper-server.vercel.app",
+  //   "object-src": "'self'"
+  // }
 }
