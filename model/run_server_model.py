@@ -8,6 +8,8 @@ import tiktoken
 from transformers import pipeline
 import os
 import tensorflow as tf
+from fastapi.responses import JSONResponse
+
 
 # Environment and TensorFlow setup
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suppress TensorFlow logging (1: INFO, 2: WARNING, 3: ERROR)
@@ -19,14 +21,15 @@ openai.api_key = 'sk-proj-_LHvzTEW99hX2R2NF4oHBNrTbdPvUY_7EGEPvD9yFyHaxofCZCQITe
 # Initialize FastAPI app
 app = FastAPI()
 
-# Setup CORS (Cross-Origin Resource Sharing)
+# CORS setup
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
 
 # Initialize the summarizer pipeline once
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn", framework="pt")  # Use PyTorch backend
@@ -73,6 +76,16 @@ async def send_request(user_input: UserInput):
     try:
         count_tokens, updated_input_text = count_and_summary_user_input(user_input.user_input)
         print(updated_input_text)
+        if count_tokens < 4:
+            return JSONResponse(content={
+            "bot_response": "The input is too short. Please enter a longer sentence to proceed.",
+            "confidence_score": "N/A"
+        }, headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+            "Access-Control-Allow-Headers": "*"
+        })
+        
         response = openai.ChatCompletion.create(
             model="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp",
             messages=[
@@ -99,12 +112,24 @@ async def send_request(user_input: UserInput):
             confidence_score.append(calculate_confidence(logprob.logprob))
             print(f"probability {i}: {confidence_score[i]}")
 
-        return {
+        # Manually add CORS headers in the response
+        return JSONResponse(content={
             "bot_response": response.choices[0]['message']['content'],
             "confidence_score": confidence_score
-        }
+        }, headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+            "Access-Control-Allow-Headers": "*"
+        })
+    
     except Exception as e:
         print(f"An error occurred: {e}")
+        return JSONResponse(content={"error": str(e)}, status_code=500, headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+            "Access-Control-Allow-Headers": "*"
+        })
+    
     finally:
         print("#############################################")
 

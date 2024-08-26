@@ -1,40 +1,412 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Project Landing Page</title>
-    <link rel="stylesheet" href="design.css">
+    <title>Truth Keeper Project Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #4d97b2, #39a9a9, #81d8d0);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            position: relative;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #ecf0f1;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .logo-container {
+            width: 600px;
+            margin: 0 auto 20px auto;
+            padding-right: 30px;
+            text-align: center;
+        }
+        .logo {
+            width: 100%;
+            transition: all 1s ease;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: transform 1s ease;
+        }
+        .blocks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            transition: transform 1s ease;
+        }
+        .block {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+        .block:hover {
+            background-color: #f0f0f0;
+        }
+        .block img {
+            margin-top: 10px;
+            max-width: 100%;
+            width: 200px;
+        }
+
+        /* Switch and Attraction Text styling */
+        .attraction-text {
+            font-size: 20px;
+            color: #ffeb3b;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px #000;
+            animation: glow 1.0s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 2px 2px 4px #ffeb3b; }
+            100% { text-shadow: 2px 2px 18px #ffeb3b; }
+        }
+
+        .switch {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Confetti animation */
+        @keyframes confetti-down {
+            0% {transform: translateY(-100vh) rotate(0);}
+            100% {transform: translateY(100vh) rotate(720deg);}
+        }
+
+        @keyframes confetti-up {
+            0% {transform: translateY(100vh) rotate(0);}
+            100% {transform: translateY(-100vh) rotate(-720deg);}
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0.7;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            pointer-events: none;
+            background-color: red; /* Default color */
+        }
+
+        /* Confetti Colors */
+        .confetti:nth-child(2n) {
+            animation-name: confetti-down;
+        }
+        .confetti:nth-child(2n+1) {
+            animation-name: confetti-up;
+        }
+
+        .confetti:nth-child(4n) { background-color: blue; }
+        .confetti:nth-child(4n+1) { background-color: yellow; }
+        .confetti:nth-child(4n+2) { background-color: green; }
+        .confetti:nth-child(4n+3) { background-color: purple; }
+        .confetti:nth-child(5n) { background-color: orange; }
+        .confetti:nth-child(5n+1) { background-color: cyan; }
+        .confetti:nth-child(5n+2) { background-color: pink; }
+        .confetti:nth-child(5n+3) { background-color: lime; }
+        .confetti:nth-child(5n+4) { background-color: magenta; }
+
+        /* Distribute Confetti Across the Screen */
+        .confetti:nth-child(1) {left: 5%;}
+        .confetti:nth-child(2) {left: 11%;}
+        .confetti:nth-child(3) {left: 16%;}
+        .confetti:nth-child(4) {left: 21%;}
+        .confetti:nth-child(5) {left: 26%;}
+        .confetti:nth-child(6) {left: 31%;}
+        .confetti:nth-child(7) {left: 36%;}
+        .confetti:nth-child(8) {left: 41%;}
+        .confetti:nth-child(9) {left: 46%;}
+        .confetti:nth-child(10) {left: 51%;}
+        .confetti:nth-child(11) {left: 56%;}
+        .confetti:nth-child(12) {left: 61%;}
+        .confetti:nth-child(13) {left: 66%;}
+        .confetti:nth-child(14) {left: 71%;}
+        .confetti:nth-child(15) {left: 76%;}
+        .confetti:nth-child(16) {left: 81%;}
+        .confetti:nth-child(17) {left: 86%;}
+        .confetti:nth-child(18) {left: 91%;}
+        .confetti:nth-child(19) {left: 96%;}
+
+        /* Newspaper animation */
+        .newspaper {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('fake news icon.png');
+            background-size: cover;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                top: 110%;
+                transform: rotate(360deg);
+                opacity: 0.5;
+            }
+        }
+
+        .newspaper:nth-child(1) {
+            left: 5%;
+            animation-duration: 4s;
+            animation-delay: 0s;
+        }
+
+        .newspaper:nth-child(2) {
+            left: 15%;
+            animation-duration: 6s;
+            animation-delay: 1s;
+        }
+
+        .newspaper:nth-child(3) {
+            left: 25%;
+            animation-duration: 5s;
+            animation-delay: 2s;
+        }
+
+        .newspaper:nth-child(4) {
+            left: 35%;
+            animation-duration: 7s;
+            animation-delay: 0.5s;
+        }
+
+        .newspaper:nth-child(5) {
+            left: 45%;
+            animation-duration: 8s;
+            animation-delay: 3s;
+        }
+
+        .newspaper:nth-child(6) {
+            left: 55%;
+            animation-duration: 4.5s;
+            animation-delay: 1.5s;
+        }
+
+        .newspaper:nth-child(7) {
+            left: 65%;
+            animation-duration: 6.5s;
+            animation-delay: 2.5s;
+        }
+
+        .newspaper:nth-child(8) {
+            left: 75%;
+            animation-duration: 5.5s;
+            animation-delay: 0s;
+        }
+
+        .newspaper:nth-child(9) {
+            left: 85%;
+            animation-duration: 7.5s;
+            animation-delay: 2s;
+        }
+
+        .newspaper:nth-child(10) {
+            left: 95%;
+            animation-duration: 9s;
+            animation-delay: 4s;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header with Logo -->
-    <header class="header">
-        <img src="C:\Users\mz6l4w\Study\Repo_fake_news\truth_keeper\react_website\src\assets\images\logosingle.png" alt="Your Logo" class="logo" >
-    </header>
-
-    <!-- Main Content with Blocks -->
+    <!-- Main Content with Logo and Blocks -->
     <main class="main-content">
         <div class="blocks-container">
-            <a href="http://localhost:3000/" class="block">
-                <h2>Visit Our Website - TruthKepper.com</h2>
+            <div class="logo-container">
+                <img src="truth_keeper_logo.png" alt="Your Logo" class="logo">
+            </div>
+            <a href="https://truth-keeper-inky.vercel.app/" class="block" target="_blank">
+                <h3>Visit Our Website - TruthKeeper.com</h3>
             </a>
             <a href="https://chromewebstore.google.com/search/Truth%20Keeper" class="block" target="_blank" rel="noopener noreferrer">
-                <h2>Download Our Chrome Extension</h2>
-                <img src="C:\Users\mz6l4w\Study\Repo_fake_news\truth_keeper\react_website\src\assets\images\download_chrome.png" style="width: 200px;">
+                <h3>Download Our Chrome Extension</h3>
             </a>
             <a href="https://docs.google.com/document/d/1E6FPia8dwIuyFMmJ8wE1sApUGY9lUDEVKctyjohC_DE/edit#heading=h.cjslg98g2vvn" class="block" target="_blank" rel="noopener noreferrer">
-                <h2>Project Documentation</h2>
+                <h3>Project Documentation</h3>
             </a>
             <a href="https://docs.google.com/presentation/d/1DoHMffY5pto7tczGccONYOmIKjGva2xw/edit#slide=id.p1" class="block" target="_blank" rel="noopener noreferrer">
-                <h2>Project Presentation</h2>
+                <h3>Project Presentation</h3>
             </a>
         </div>
     </main>
 
-    <!-- Footer with Credits -->
+    <!-- Confetti for animation -->
+    <div class="newspaper"></div>
+    <div class="newspaper"></div>
+    <div class="newspaper"></div>
+    <div class="newspaper"></div>
+    <div class="newspaper"></div>
+    <div class="newspaper"></div>
+    <div class="newspaper"></div>
+    <div class="newspaper"></div>
+    <div class="newspaper"></div>
+    <div class="newspaper"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+
+    <!-- Falling newspapers for special mode -->
+
+
+    <!-- Footer with Credits and Switch -->
     <footer class="footer">
-        <p>© 2024 TruthKepper.</p>
-        <p>Credits: Matan Shemesh & Ariel Cohen - Developer</p>
+        <label class="switch">
+            <input type="checkbox" id="toggleSwitch">
+            <span class="slider"></span>
+        </label>
+        <p>© 2024 TruthKeeper. All rights reserved.</p>
+        <p>Developed by <a href="https://www.linkedin.com/in/matanshemesh/" target="_blank">Matan Shemesh</a> & <a href="https://www.linkedin.com/in/%D7%90%D7%A8%D7%99%D7%90%D7%9C-%D7%9B%D7%94%D7%9F-550964258/" target="_blank">Ariel Cohen</a></p>
+        <div class="attraction-text" style="text-align: right; margin-right:60px">Switch to Truth Keeper mode! 🎉</div>
     </footer>
+
+    <script>
+        const toggleSwitch = document.getElementById('toggleSwitch');
+        const body = document.body;
+        const newspapers = document.querySelectorAll('.newspaper');
+
+        toggleSwitch.addEventListener('change', function() {
+            if (this.checked) {
+                body.classList.add('animate');
+                document.querySelectorAll('.confetti').forEach((element, index) => {
+                    element.style.display = 'block';
+                    element.style.animationDuration = '1.5s';
+                    element.style.animationDelay = `${index * 0.1}s`;
+                });
+                newspapers.forEach(element => {
+                    element.style.display = 'block';
+                });
+            } else {
+                body.classList.remove('animate');
+                document.querySelectorAll('.confetti').forEach(element => {
+                    element.style.display = 'none';
+                });
+                newspapers.forEach(element => {
+                    element.style.display = 'none';
+                });
+            }
+        });
+
+        // Initially hide confetti and newspapers
+        document.querySelectorAll('.confetti, .newspaper').forEach(element => {
+            element.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
