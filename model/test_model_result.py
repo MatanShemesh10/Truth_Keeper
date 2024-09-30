@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -10,8 +10,9 @@ import re
 
 
 # Your OpenAI API key should be kept secret and not exposed in the code
-openai.api_key = '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'
-
+client = OpenAI(
+    api_key='sk-9cSwF2j6h9X2ucpdxGwRbuF-cxB7GMXS3QHcEDZDa8T3BlbkFJi9_MvNuVKvUVU5_1cUS1EKEa_eaSsinVX_tWTABXAA'
+)
 prediction_results = []
 real_results = []
 
@@ -53,7 +54,7 @@ def save_results(model_name):
     
 def send_req(question, index, model_name):
     source_query = "TruthKeeper is a fake news detector bot. Return answer of True or False."
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
                 model=model_name,
                 messages=[
                     {
@@ -70,16 +71,12 @@ def send_req(question, index, model_name):
                 logprobs=True,  # Request log probabilities
                 top_logprobs=5
             )
-    top_two_logprobs = response.choices[0].logprobs.content[0].top_logprobs
+    capture_logprobs = response.choices[0].logprobs.content[0].top_logprobs
     confidence_score = []
     question_results = []
-    for i, logprob in enumerate(top_two_logprobs):
-        # print(f"Output token {i}: {logprob.token}")
+    for i, logprob in enumerate(capture_logprobs):
         question_results.append(logprob.token)
-
-        # print(f"logprobs: {i}: {logprob.logprob}")
         confidence_score.append(calculate_confidence(logprob.logprob))
-        # print(f"probability {i}: {confidence_score[i]}")
         print(f"Results for index {index}: {question_results[i]}")
 
     store_result(question_results, confidence_score, index)
@@ -155,5 +152,5 @@ def compare_results(model_name):
 
 
 
-start(file_name='model/500_test_data.jsonl',model_name="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp")
+start(file_name='json_data/test_data.jsonl',model_name="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp")
 compare_results(model_name="ft:gpt-3.5-turbo-0613:matan:train-data-2:9Ifdqgfp")
