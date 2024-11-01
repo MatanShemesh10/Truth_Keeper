@@ -5,6 +5,8 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 import uvicorn
+from dotenv import load_dotenv
+import os
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -18,11 +20,12 @@ app.add_middleware(
     allow_headers=["Content-Type", "Authorization"],  # Allows all headers
 )
 
+# Load environment variables from .env file
+load_dotenv()
+
 # # Your OpenAI API key should be kept secret and not exposed in the code
-
-
 client = OpenAI(
-    api_key=''
+    api_key=os.getenv("OPEN_AI")
 )
 # Model for user input
 class UserInput(BaseModel):
