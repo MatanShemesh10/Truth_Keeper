@@ -19,10 +19,10 @@ app.add_middleware(
 )
 
 # # Your OpenAI API key should be kept secret and not exposed in the code
-# openai.api_key = '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'
+
 
 client = OpenAI(
-    api_key='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'
+    api_key=''
 )
 # Model for user input
 class UserInput(BaseModel):
