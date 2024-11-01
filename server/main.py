@@ -22,7 +22,7 @@ app.add_middleware(
 # openai.api_key = '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'
 
 client = OpenAI(
-    api_key='sk-9cSwF2j6h9X2ucpdxGwRbuF-cxB7GMXS3QHcEDZDa8T3BlbkFJi9_MvNuVKvUVU5_1cUS1EKEa_eaSsinVX_tWTABXAA'
+    api_key='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'
 )
 # Model for user input
 class UserInput(BaseModel):
