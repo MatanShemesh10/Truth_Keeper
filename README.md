@@ -138,16 +138,6 @@ The project is structured as a modular system with several key components:
 
 ---
 
-## 📚 Documentation
-
-- Detailed research and implementation steps can be found in the `docs/` directory and the associated project documentation.
-- Includes:
-  - Model architecture diagrams.
-  - Data preprocessing pipelines.
-  - Model training details and evaluation metrics.
-
----
-
 ## 🤝 Acknowledgements
 
 - Project supervised by **Dr. Nadav Wolach** at Ruppin Academic Center.
@@ -158,7 +148,7 @@ The project is structured as a modular system with several key components:
 
 ## 📜 License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the Ruppin Academic Center and MIT License.
 
 ---
 
