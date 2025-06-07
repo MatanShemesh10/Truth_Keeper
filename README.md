@@ -30,7 +30,6 @@ The project is structured as a modular system with several key components:
 ├── datasets/            # Datasets for model fine-tuning and evaluation
 ├── models/              # Pre-trained and fine-tuned language models
 ├── scripts/             # Scripts for data preparation, model training, and evaluation
-├── docs/                # Project documentation, research papers, and architecture diagrams
 ├── requirements.txt     # Python dependencies
 ├── README.md            # Project documentation (this file)
 └── LICENSE              # Project license
